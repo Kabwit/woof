@@ -1,5 +1,5 @@
 package com.example.woof
-
+import androidx.compose.material3.CenterAlignedTopAppBar
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -21,6 +21,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -62,13 +63,18 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WoofApp() {
-    Scaffold { it ->
+    Scaffold(
+        topBar = {
+            WoofTopAppBar()
+        }
+    ) { it ->
         LazyColumn(contentPadding = it) {
             items(dogs) {
                 DogItem(
                     dog = it,
                     modifier = Modifier.padding(dimensionResource(R.dimen.padding_small))
                 )
+
             }
         }
     }
@@ -150,6 +156,31 @@ fun DogInformation(
 
 
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun WoofTopAppBar(modifier: Modifier = Modifier) {
+    CenterAlignedTopAppBar(
+        title = {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    modifier = Modifier
+                        .size(dimensionResource(id = R.dimen.image_size))
+                        .padding(dimensionResource(id = R.dimen.padding_small)),
+                    painter = painterResource(R.drawable.ic_woof_logo),
+
+                    contentDescription = null
+                )
+                Text(
+                    text = stringResource(R.string.app_name),
+                    style = MaterialTheme.typography.displayLarge
+                )
+            }
+        },
+        modifier = modifier
+    )
+}
 
 @Preview(showBackground = true)
 @Composable
