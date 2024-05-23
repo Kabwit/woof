@@ -17,10 +17,9 @@ import androidx.core.view.WindowCompat
 
 
 import android.view.View
-import androidx.compose.material3.Shapes
 
 import androidx.compose.ui.graphics.Color
-
+import androidx.compose.material3.Shapes
 private val LightColors = lightColorScheme(
     primary = md_theme_light_primary,
     onPrimary = md_theme_light_onPrimary,
@@ -111,7 +110,7 @@ fun WoofTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-       // shapes = Shapes,
+        shapes = Shapes,
         typography = Typography,
         content = content
     )
